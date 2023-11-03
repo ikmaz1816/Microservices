@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: employee
+          uri: lb://employee
+          predicates:
+            - Path=/employee/**
+        - id: department
+          uri: lb://department
+          predicates:
+            - Path=/department/**
+  config:
+    import: "optional:configserver:http://localhost:8080"
+
